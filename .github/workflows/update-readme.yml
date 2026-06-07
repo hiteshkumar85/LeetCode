@@ -17,38 +17,45 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Generate Recent Problems
-        run: |
-          RECENT=$(find . -maxdepth 1 -type d \
-          | grep -E "^\./[0-9]+" \
-          | sed 's|^\./||' \
-          | sort -V \
-          | tail -n 5)
+        run: | 
+         git fetch --all
+         
+         RECENT=$(git log \
+           --pretty=format:"%s" \
+           -n 50 \
+           | grep "LeetSync" \
+           | sed 's/ - LeetSync//g' \
+           | head -n 5)
 
-          {
-            while read line
-            do
-              [ -n "$line" ] && echo "- $line"
-            done <<< "$RECENT"
-          } > recent.txt
+         {
+          echo "### Latest Activity"
+          echo ""
 
-          awk '
-          BEGIN {skip=0}
-          /<!-- LEETCODE_RECENT_START -->/ {
-            print
-            while ((getline line < "recent.txt") > 0) print line
-            skip=1
-            next
-          }
-          /<!-- LEETCODE_RECENT_END -->/ {
-            skip=0
-            print
-            next
-          }
-          !skip
-          ' README.md > README_NEW.md
+          while read line
+          do
+            [ -n "$line" ] && echo "- $line"
+          done <<< "$RECENT"
 
-          mv README_NEW.md README.md
+         } > recent.txt
 
+         awk '
+         BEGIN {skip=0}
+         /<!-- LEETCODE_RECENT_START -->/ {
+          print
+          while ((getline line < "recent.txt") > 0) print line
+          skip=1
+          next
+         }
+         /<!-- LEETCODE_RECENT_END -->/ {
+           skip=0
+           print
+           next
+         }
+         !skip
+         ' README.md > README_NEW.md
+
+         mv README_NEW.md README.md
+         
       - name: Commit Changes
         run: |
           git config user.name github-actions
