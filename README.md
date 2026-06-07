@@ -11,11 +11,8 @@ The solutions are cover a wide range of Data Structures and Algorithms topics fo
 ## Recent Problems
 
 <!-- LEETCODE_RECENT_START -->
-- 2859-add-two-promises
-- 2860-sort-by
-- 2862-interval-cancellation
-- 2863-calculator-with-method-chaining
-- 2864-is-object-empty
+### Latest Activity
+
 <!-- LEETCODE_RECENT_END -->
 
 ---
