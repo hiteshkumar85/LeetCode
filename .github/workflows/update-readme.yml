@@ -18,14 +18,12 @@ jobs:
 
       - name: Generate Recent Problems
         run: | 
-         git fetch --all
-         
-         RECENT=$(git log \
-           --pretty=format:"%s" \
-           -n 50 \
-           | grep "LeetSync" \
-           | sed 's/ - LeetSync//g' \
-           | head -n 5)
+         RECENT=$(git log -n 50 --pretty=format:"%s" \
+         | grep "LeetSync" \
+         | sed 's/ - LeetSync.*//g' \
+         | sed 's/^.*Time:.*//g' \
+         | grep -E "^[0-9]" \
+         | head -n 5)
 
          {
           echo "### Latest Activity"
