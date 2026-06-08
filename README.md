@@ -11,8 +11,6 @@ The solutions are cover a wide range of Data Structures and Algorithms topics fo
 ## Recent Problems
 
 <!-- LEETCODE_RECENT_START -->
-### Latest Activity
-
 <!-- LEETCODE_RECENT_END -->
 
 ---
