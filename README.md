@@ -13,6 +13,7 @@ The solutions are cover a wide range of Data Structures and Algorithms topics fo
 <!-- LEETCODE_RECENT_START -->
 ### Latest Activity
 
+- Time: 33 ms (60.84%) | Memory: 88.8 MB (39.16%)
 <!-- LEETCODE_RECENT_END -->
 
 ---
